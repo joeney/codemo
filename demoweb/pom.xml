@@ -9,7 +9,7 @@
 	<artifactId>demoweb</artifactId>
 	<packaging>war</packaging>
 	<name>demoweb Maven Webapp</name>
-	<url>http://sourceforge.net/p/codemo/</url>
+	<url>https://github.com/joeney/codemo</url>
 
 	<properties>
 		<envir>develop</envir>
