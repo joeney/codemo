@@ -1,20 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO" monitorInterval="60">
+<Configuration status="INFO" monitorInterval="${log4j.monitor.interval}">
 	<Appenders>
 		<Console name="console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d{HHmmss.SSS} %level{length=1} [%C.%M:%L] - %m%n" />
 		</Console>
-		<RollingFile name="rollingfile" fileName="logs/app.log" filePattern="logs/app.log.%d{yyyyMMdd}.log">
+		<RollingFile name="rollingfile" fileName="${log4j.logfile}.all.log" filePattern="${log4j.logfile}.all.log.%d{yyyyMMdd}.log">
 			<PatternLayout pattern="%d{yyyyMMddHHmmss.SSS} [%t] %5p %C.%M:%L - %m%n" />
 			<Policies>
 				<TimeBasedTriggeringPolicy />
 			</Policies>
 		</RollingFile>
+		<Console name="console_simple_log" target="SYSTEM_OUT">
+			<PatternLayout pattern="# %m%n" />
+		</Console>
+		<RollingFile name="rollingfile_simple_log" fileName="${log4j.logfile}.all.log" filePattern="${log4j.logfile}.all.log.%d{yyyyMMdd}.log">
+			<PatternLayout pattern="%d{yyyyMMddHHmmss.SSS} # - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+		<RollingFile name="rollingfile_page_err" fileName="${log4j.logfile}.pge.log" filePattern="${log4j.logfile}.pge.log.%d{yyyyMMdd}.log">
+			<PatternLayout pattern="%d{yyyyMMddHHmmss.SSS} [%t] %5p %C.%M:%L - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+		<RollingFile name="rollingfile_business" fileName="${log4j.logfile}.biz.log" filePattern="${log4j.logfile}.biz.log.%d{yyyyMMdd}.log">
+			<PatternLayout pattern="%d{yyyyMMddHHmmss.SSS} %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+		<RollingFile name="rollingfile_security" fileName="${log4j.logfile}.sec.log" filePattern="${log4j.logfile}.sec.log.%d{yyyyMMdd}.log">
+			<PatternLayout pattern="%d{yyyyMMddHHmmss.SSS} %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+		<SMTP name="email" subject="${app_name} Error Log" to="${log4j.notify.emails}" from="${log4j.notify.from}" smtpUsername="${log4j.notify.username}" smtpPassword="${log4j.notify.password}" smtpHost="${log4j.notify.smtp}" smtpPort="25" smtpProtocol="smtp">
+			<RegexFilter regex="${log4j.notify.keyword}" onMatch="ACCEPT" onMismatch="DENY" />
+		</SMTP>
 	</Appenders>
 	<Loggers>
-		<Root level="all">
+		<logger name="org.springframework" level="WARN" additivity="true" />
+		<logger name="sf.demoweb.common.AppConfig" level="WARN" additivity="false">
+			<AppenderRef ref="console_simple_log" />
+			<AppenderRef ref="rollingfile_simple_log" />
+		</logger>
+		<logger name="loggername.page" level="${log4j.level.min}" additivity="true">
+			<AppenderRef ref="rollingfile_page_err" />
+		</logger>
+		<logger name="loggername.business" level="${log4j.level.min}" additivity="true">
+			<AppenderRef ref="rollingfile_business" />
+		</logger>
+		<logger name="loggername.security" level="${log4j.level.min}" additivity="true">
+			<AppenderRef ref="rollingfile_security" />
+		</logger>
+		<Root level="${log4j.level.min}">
 			<AppenderRef ref="console" />
 			<AppenderRef ref="rollingfile" />
+			<!-- <AppenderRef ref="email" /> -->
 		</Root>
 	</Loggers>
 </Configuration>

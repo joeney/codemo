@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+             http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="realDemowebDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="${datasource.jdbcUrl}" />
+		<property name="user" value="root" />
+		<property name="password" value="" />
+	</bean>
+	<bean id="demowebDataSource" class="com.p6spy.engine.spy.P6DataSource">
+		<constructor-arg ref="realDemowebDataSource" />
+	</bean>
+</beans>
