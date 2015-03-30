@@ -1,4 +1,4 @@
-package sf.codemo.utils.datetime;
+package codemo.utils.datetime;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;

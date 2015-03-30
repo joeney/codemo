@@ -1,4 +1,4 @@
-package sf.codemo;
+package codemo;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

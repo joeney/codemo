@@ -1,4 +1,4 @@
-package sf.codemo.utils.document;
+package codemo.utils.document;
 
 import java.io.File;
 import java.io.FileWriter;

@@ -1,10 +1,10 @@
-package sf.codemo.utils.security;
+package codemo.utils.security;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
-import sf.codemo.utils.security.TransDigitalCertUtils.TransCert;
+import codemo.utils.security.TransDigitalCertUtils.TransCert;
 
 public class TestTransDigitalCertUtils {
 	private final Log logger = LogFactory.getLog(getClass());

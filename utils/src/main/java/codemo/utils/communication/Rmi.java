@@ -1,4 +1,4 @@
-package sf.codemo.utils.communication;
+package codemo.utils.communication;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

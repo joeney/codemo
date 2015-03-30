@@ -1,4 +1,4 @@
-package sf.codemo.utils.string;
+package codemo.utils.string;
 
 import static org.junit.Assert.assertEquals;
 

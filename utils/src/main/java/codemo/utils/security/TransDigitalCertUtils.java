@@ -1,4 +1,4 @@
-package sf.codemo.utils.security;
+package codemo.utils.security;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package sf.codemo.utils.string;
+package codemo.utils.string;
 
 public class StringTools {
 	private static final String src_number = "0123456789";

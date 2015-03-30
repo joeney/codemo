@@ -1,4 +1,4 @@
-package sf.codemo.utils.poi;
+package codemo.utils.poi;
 
 import java.io.File;
 import java.io.FileInputStream;

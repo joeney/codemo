@@ -1,4 +1,4 @@
-package sf.codemo;
+package codemo;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

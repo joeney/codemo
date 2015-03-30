@@ -1,4 +1,4 @@
-package sf.codemo.utils.datetime;
+package codemo.utils.datetime;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-import sf.codemo.utils.string.StringTools;
+import codemo.utils.string.StringTools;
 
 public class DateTools {
 	private static final String datePattern = "yyyy-MM-dd";

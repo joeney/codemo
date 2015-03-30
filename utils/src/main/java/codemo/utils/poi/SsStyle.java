@@ -1,4 +1,4 @@
-package sf.codemo.utils.poi;
+package codemo.utils.poi;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;

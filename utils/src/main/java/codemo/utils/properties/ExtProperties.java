@@ -1,4 +1,4 @@
-package sf.codemo.utils.properties;
+package codemo.utils.properties;
 
 import java.io.BufferedReader;
 import java.io.File;
