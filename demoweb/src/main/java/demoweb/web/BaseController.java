@@ -13,18 +13,16 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import common.service.WebUserService;
+
 import demoweb.business.MessageManager;
-import demoweb.service.StudentService;
-import demoweb.view.StudentProfilePdfView;
 
 @Controller
 public abstract class BaseController {
 	private static final Log logger = LogFactory.getLog(BaseController.class);
 	protected final Log loggerForPageErr = LogFactory.getLog("loggername.page");
 	@Autowired
-	protected StudentService studentService;
-	@Autowired
-	protected StudentProfilePdfView studentProfilePdfView;
+	protected WebUserService webUserService;
 	@Autowired
 	protected MessageManager messageManager;
 

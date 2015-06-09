@@ -43,7 +43,7 @@
 		</SMTP>
 	</Appenders>
 	<Loggers>
-		<logger name="org.springframework" level="WARN" additivity="true" />
+		<logger name="org.springframework" level="INFO" additivity="true" />
 		<logger name="sf.demoweb.common.AppConfig" level="WARN" additivity="false">
 			<AppenderRef ref="console_simple_log" />
 			<AppenderRef ref="rollingfile_simple_log" />

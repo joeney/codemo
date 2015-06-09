@@ -6,7 +6,9 @@
 		<version>0.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
+	<groupId>codemo</groupId>
 	<artifactId>common</artifactId>
+	<version>0.1</version>
 	<packaging>jar</packaging>
 
 	<name>common</name>

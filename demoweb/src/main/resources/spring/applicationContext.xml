@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
     http://www.springframework.org/schema/context
@@ -14,7 +14,7 @@
 
 	<context:annotation-config />
 	<aop:aspectj-autoproxy />
-	<context:component-scan base-package="demoweb" use-default-filters="false">
+	<context:component-scan base-package="common,demoweb" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
@@ -22,30 +22,18 @@
 	</context:component-scan>
 
 	<import resource="classpath:datasource/${envir}.xml" />
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="demowebDataSource" />
-		<property name="persistenceUnitName" value="persistenceunit" />
-		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-		</property>
-		<property name="jpaProperties">
-			<props>
-				<prop key="hibernate.dialect">${datasource.hibernate.dialect}</prop>
-				<prop key="hibernate.show_sql">${datasource.hibernate.show_sql}</prop>
-				<prop key="hibernate.format_sql">${datasource.hibernate.format_sql}</prop>
-				<prop key="hibernate.hbm2ddl.auto">${datasource.hibernate.hbm2ddl.auto}</prop>
-			</props>
-		</property>
-	</bean>
-
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	<jpa:repositories base-package="demoweb" transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory" />
-
+	<import resource="classpath:spring/beans.xml" />
 	<context:property-placeholder location="classpath:spring/config.properties" ignore-unresolvable="false" />
 
-	<import resource="classpath:spring/beans.xml" />
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="demowebDataSource" />
+		<property name="packagesToScan" value="common" />
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 </beans>
