@@ -16,6 +16,7 @@
 	<modules>
 		<module>demojava</module>
 		<module>demoweb</module>
+		<module>utils</module>
 	</modules>
 
 	<build>
