@@ -18,6 +18,7 @@
 	<modules>
 		<module>demojava</module>
 		<module>demoweb</module>
+		<module>common</module>
 	</modules>
 
 	<build>
